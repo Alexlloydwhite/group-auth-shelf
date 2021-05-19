@@ -18,7 +18,7 @@ function ShelfPage() {
       {JSON.stringify(items)}
       <ul>
         {items.map(item => {
-          return <li>Description: {item.description} Image: {item.image_url}</li>
+          return <li key={item.id}>Description: {item.description} Image: {item.image_url}</li>
         })}
       </ul>
     </div>
