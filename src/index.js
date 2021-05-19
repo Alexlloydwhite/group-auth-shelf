@@ -14,39 +14,23 @@ import axios from 'axios';
 
 const sagaMiddleware = createSagaMiddleware();
 
-function* rootSaga() {
-  yield takeEvery('FETCH_ITEMS', fetchShelfItems)
-  yield takeEvery('ADD_ITEMS', addItems)
-  yield takeEvery('DELETE_ITEMS', deleteItems)
-}
+// function* addItems(action) {
+//   try {
+//       yield axios.post('/api/shelf', action.payload);
+//   } catch (error) {
+//       // alert(`Sorry things aren't working at the moment. Try again later.`);
+//       console.log('Error adding movie', error);
+//   }
+// }
 
-function* fetchShelfItems() {
-  try{
-    const items = yield axios.get('/api/shelf');
-    console.log('get all', items.data);
-    yield put({type: 'SET_ITEMS', payload: items.data});
-  } catch {
-    console.log('get items error');
-  }
-}
-
-function* addItems(action) {
-  try {
-      yield axios.post('/api/shelf', action.payload);
-  } catch (error) {
-      // alert(`Sorry things aren't working at the moment. Try again later.`);
-      console.log('Error adding movie', error);
-  }
-}
-
-function* deleteItems(action) {
-  try {
-      yield axios.put('/api/shelf', action.payload);
-  } catch (error) {
-      // alert(`Sorry things aren't working at the moment. Try again later.`);
-      console.log('Error adding movie', error);
-  }
-}
+// function* deleteItems(action) {
+//   try {
+//       yield axios.put('/api/shelf', action.payload);
+//   } catch (error) {
+//       // alert(`Sorry things aren't working at the moment. Try again later.`);
+//       console.log('Error adding movie', error);
+//   }
+// }
 // this line creates an array of all of redux middleware you want to use
 // we don't want a whole ton of console logs in our production code
 // logger will only be added to your project if your in development mode
