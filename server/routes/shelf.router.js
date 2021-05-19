@@ -12,11 +12,13 @@ const {
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
   pool
-  .query(`SELECT * FROM "item";`)
-  .then((response) => {
-    res.send(response.data);
+  .query(`SELECT * FROM "item" WHERE user_id=$1;`, [req.user.id])
+  .then((results) => {
+    res.send(results.rows);
   }).catch(err => {
     res.sendStatus(500);
+    console.log('Error in GET /shelf', err);
+    
   })
 });
 
