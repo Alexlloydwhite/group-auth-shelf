@@ -9,8 +9,6 @@ import rootReducer from './redux/reducers/_root.reducer'; // imports ./redux/red
 import rootSaga from './redux/sagas/_root.saga'; // imports ./redux/sagas/index.js
 
 import App from './components/App/App';
-import { takeEvery, put } from '@redux-saga/core/effects';
-import axios from 'axios';
 
 const sagaMiddleware = createSagaMiddleware();
 
