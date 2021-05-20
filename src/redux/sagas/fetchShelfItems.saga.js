@@ -1,4 +1,4 @@
-import { put } from '@redux-saga/core/effects';
+import { put, takeEvery } from '@redux-saga/core/effects';
 import axios from 'axios';
 
 function* fetchShelfItems() {
@@ -11,4 +11,8 @@ function* fetchShelfItems() {
     }
 }
 
-export default fetchShelfItems;
+function* itemSaga() {
+    yield takeEvery('FETCH_ITEMS', fetchShelfItems)
+}
+
+export default itemSaga;

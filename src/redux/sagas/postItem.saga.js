@@ -1,11 +1,10 @@
 import { takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-function* postItem() {
+function* postItem(action) {
     try {
-        yield axios.post('/api/shelf', action.payload);
+        yield axios.post('/api/shelf', {description: action.description, image_url: action.image_url});
     } catch (error) {
-        // alert(`Sorry things aren't working at the moment. Try again later.`);
         console.log('Error adding movie', error);
     }
 }
