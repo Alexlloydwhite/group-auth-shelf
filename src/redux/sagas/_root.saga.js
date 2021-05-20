@@ -1,8 +1,9 @@
-import { all } from 'redux-saga/effects';
+import { all, takeEvery } from 'redux-saga/effects';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import fetchShelfItems from './fetchShelfItems.saga';
+import deleteShelfItem from './deleteShelfItem.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -12,10 +13,12 @@ import fetchShelfItems from './fetchShelfItems.saga';
 // the registration triggers a login
 // and login triggers setting the user
 export default function* rootSaga() {
+
+  yield takeEvery('DELETE_ITEM', deleteShelfItem);
+  yield takeEvery('FETCH_ITEMS', fetchShelfItems);
   yield all([
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
-    fetchShelfItems(),
   ]);
 }
