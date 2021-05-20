@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import './ShelfPage.css';
+
 function ShelfPage() {
 
   const dispatch = useDispatch();
@@ -12,13 +14,20 @@ function ShelfPage() {
     dispatch({ type: 'FETCH_ITEMS' });
   }, [])
 
+  function deleteItem(id) {
+    // console.log('in deleteItem', id);
+    dispatch({ type: 'DELETE_ITEM', payload: id });
+  }
+
   return (
     <div className="container">
       <h2>Shelf</h2>
-      {JSON.stringify(items)}
       <ul>
         {items.map(item => {
-          return <li key={item.id}>Description: {item.description} Image: {item.image_url}</li>
+          return <li key={item.id}>Description: {item.description}
+            <img src={item.image_url} className="images" />
+            <button onClick={() => deleteItem(item.id)}>Delete</button>
+          </li>
         })}
       </ul>
     </div>

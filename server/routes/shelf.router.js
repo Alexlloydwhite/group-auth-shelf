@@ -12,14 +12,14 @@ const {
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
   pool
-  .query(`SELECT * FROM "item" WHERE user_id=$1;`, [req.user.id])
-  .then((results) => {
-    res.send(results.rows);
-  }).catch(err => {
-    res.sendStatus(500);
-    console.log('Error in GET /shelf', err);
-    
-  })
+    .query(`SELECT * FROM "item" WHERE user_id=$1;`, [req.user.id])
+    .then((results) => {
+      res.send(results.rows);
+    }).catch(err => {
+      res.sendStatus(500);
+      console.log('Error in GET /shelf', err);
+
+    })
 });
 
 /**
@@ -44,8 +44,14 @@ router.post('/', (req, res) => {
 /**
  * Delete an item if it's something the logged in user added
  */
-router.delete('/:id', (req, res) => {
-  // endpoint functionality
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+  const queryText = 'DELETE FROM item WHERE id=$1 AND user_id=$2;';
+  pool.query(queryText, [req.params.id, req.user.id])
+    .then(() => { res.sendStatus(200) })
+    .catch((error) => {
+      console.log('Error in deleting item', error);
+      res.sendStatus(500);
+    });
 });
 
 /**
