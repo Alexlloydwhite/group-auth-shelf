@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router";
-import ReactFilestack from 'react-filestack';
+import PickerDropPane from 'react-filestack';
 
 const AddItemForm = () => {
     const [description, setDescription] = useState('');
@@ -17,7 +17,7 @@ const AddItemForm = () => {
         history.push('/shelf');
     }
 
-    const API_KEY = 'AWwk8yYpJQECEWX7Aj6Lwz';
+    const API_KEY = process.env.REACT_APP_API_KEY;
     console.log('API KEY IS:', API_KEY);
 
     return (
@@ -29,8 +29,8 @@ const AddItemForm = () => {
                     placeholder="Item Description"
                     onChange={(e) => setDescription(e.target.value)}
                 />
-                <ReactFilestack
-                    apikey={'AWwk8yYpJQECEWX7Aj6Lwz'}
+                <PickerDropPane
+                    apikey={API_KEY}
                     mode = { 'pick' }
                     onSuccess={(response => console.log(response))}
                     onError={(err) => console.log(err)}
