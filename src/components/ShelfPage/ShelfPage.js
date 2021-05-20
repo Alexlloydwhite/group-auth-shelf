@@ -10,7 +10,7 @@ function ShelfPage() {
   useEffect(() => {
     // on page load, get list of items from the database
     dispatch({ type: 'FETCH_ITEMS' });
-  })
+  }, [])
 
   return (
     <div className="container">
