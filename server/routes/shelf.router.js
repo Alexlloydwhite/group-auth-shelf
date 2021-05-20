@@ -57,9 +57,9 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 /**
  * Update an item if it's something the logged in user added
  */
-router.put('/:id', (req, res) => {
-  // endpoint functionality
-});
+// router.put('/:id', (req, res) => {
+//   // endpoint functionality
+// });
 
 /**
  * Return all users along with the total number of items
