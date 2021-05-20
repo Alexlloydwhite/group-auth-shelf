@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AddItemForm from '../AddItemForm/AddItemForm';
+import MyShelfPage from '../MyShelfPage/MyShelfPage';
 
 import './App.css';
 
@@ -60,7 +61,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows ShelfPage else shows LoginPage
             exact
             path="/shelf"
           >
@@ -68,11 +69,19 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows AddItemForm else shows LoginPage
             exact
             path="/addItem"
           >
             <AddItemForm />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows MyShelfPage else shows LoginPage
+            exact
+            path="/myShelf"
+          >
+          <MyShelfPage />
           </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will

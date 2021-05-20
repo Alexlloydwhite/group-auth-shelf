@@ -10,9 +10,9 @@ const {
 /**
  * Get all of the items on the shelf
  */
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/', (req, res) => {
   pool
-    .query(`SELECT * FROM "item" WHERE user_id=$1;`, [req.user.id])
+    .query(`SELECT * FROM "item";`)
     .then((results) => {
       res.send(results.rows);
     }).catch(err => {
@@ -72,8 +72,15 @@ router.get('/count', (req, res) => {
 /**
  * Return a specific item by id
  */
-router.get('/:id', (req, res) => {
-  // endpoint functionality
+router.get('/:id', rejectUnauthenticated, (req, res) => {
+  pool
+    .query(`SELECT * FROM "item" WHERE user_id=$1;`, [req.user.id])
+    .then((results) => {
+      res.send(results.rows);
+    }).catch(err => {
+      res.sendStatus(500);
+      console.log('Error in GET /myShelf', err);
+    })
 });
 
 module.exports = router;

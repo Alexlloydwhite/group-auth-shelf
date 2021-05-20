@@ -5,6 +5,7 @@ import userSaga from './user.saga';
 import fetchShelfItems from './fetchShelfItems.saga';
 import postItem from './postItem.saga';
 import deleteShelfItem from './deleteShelfItem.saga';
+import fetchMyShelfItems from './fetchMyShelfItems.saga';
 
 
 // rootSaga is the primary saga.
@@ -18,6 +19,7 @@ export default function* rootSaga() {
   yield takeEvery('POST_ITEM', postItem);
   yield takeEvery('DELETE_ITEM', deleteShelfItem);
   yield takeEvery('FETCH_ITEMS', fetchShelfItems);
+  yield takeEvery('FETCH_MY_ITEMS', fetchMyShelfItems);
   yield all([
     loginSaga(), // login saga is now registered
     registrationSaga(),
