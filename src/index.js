@@ -12,14 +12,7 @@ import App from './components/App/App';
 
 const sagaMiddleware = createSagaMiddleware();
 
-// function* addItems(action) {
-//   try {
-//       yield axios.post('/api/shelf', action.payload);
-//   } catch (error) {
-//       // alert(`Sorry things aren't working at the moment. Try again later.`);
-//       console.log('Error adding movie', error);
-//   }
-// }
+
 
 
 // this line creates an array of all of redux middleware you want to use
