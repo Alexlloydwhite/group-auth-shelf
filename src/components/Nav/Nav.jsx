@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import {useSelector} from 'react-redux';
+import AddItemForm from '../AddItemForm/AddItemForm';
 
 function Nav() {
   const user = useSelector((store) => store.user);
@@ -31,6 +32,9 @@ function Nav() {
           <>
             <Link className="navLink" to="/shelf">
               The Shelf
+            </Link>
+            <Link className="navLink" to="/addItem">
+              Add New Item
             </Link>
             <LogOutButton className="navLink" />
           </>
