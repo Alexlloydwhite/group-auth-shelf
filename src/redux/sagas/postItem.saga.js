@@ -9,8 +9,4 @@ function* postItem(action) {
     }
 }
 
-function* postSaga() {
-    yield takeEvery('POST_ITEM', postItem);
-}
-
-export default postSaga;
+export default postItem;

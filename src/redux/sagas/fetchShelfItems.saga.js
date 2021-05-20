@@ -11,8 +11,4 @@ function* fetchShelfItems() {
     }
 }
 
-function* itemSaga() {
-    yield takeEvery('FETCH_ITEMS', fetchShelfItems)
-}
-
-export default itemSaga;
+export default fetchShelfItems;
