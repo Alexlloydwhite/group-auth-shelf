@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router";
+import PickerDropPane from 'react-filestack';
 
 const AddItemForm = () => {
     const [description, setDescription] = useState('');
@@ -16,8 +17,11 @@ const AddItemForm = () => {
         history.push('/shelf');
     }
 
+    const API_KEY = process.env.REACT_APP_API_KEY;
+    console.log('API KEY IS:', API_KEY);
+
     return (
-        <div style={{textAlign:"center"}}>
+        <div style={{ textAlign: "center" }}>
             <h2>Add A New Item To The Shelf</h2>
             <form onSubmit={submitForm}>
                 <input
@@ -25,16 +29,18 @@ const AddItemForm = () => {
                     placeholder="Item Description"
                     onChange={(e) => setDescription(e.target.value)}
                 />
-                <input
-                    value={imageUrl}
-                    placeholder="Item Image Url"
-                    onChange={(e) => setImageUrl(e.target.value)}
+                <PickerDropPane
+                    apikey={API_KEY}
+                    mode = { 'pick' }
+                    onSuccess={(response => console.log(response))}
+                    onError={(err) => console.log(err)}
+                    buttonText={'Upload Image'}
                 />
                 <button type="submit">
                     Submit
                 </button>
             </form>
-        </div>
+        </div >
     );
 }
 
