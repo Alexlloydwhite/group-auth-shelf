@@ -13,7 +13,7 @@ function MyShelfPage() {
   useEffect(() => {
     // on page load, get list of items from the database
     dispatch({ type: 'FETCH_MY_ITEMS' , payload: user.id});
-  }, [])
+  }, [myItems])
 
   function deleteItem(id) {
     // console.log('in deleteItem', id);
